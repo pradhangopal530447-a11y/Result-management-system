@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper to check if string is a valid ID pattern
+    function isValidId(id) {
+      return id.size() > 0 && id.size() < 128;
+    }
+
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    match /students/{studentId} {
+      allow read, write: if true;
+    }
+
+    match /subjects/{subjectId} {
+      allow read, write: if true;
+    }
+
+    match /marks/{markId} {
+      allow read, write: if true;
+    }
+
+    match /attendance/{attendanceId} {
+      allow read, write: if true;
+    }
+
+    match /remarks/{remarksId} {
+      allow read, write: if true;
+    }
+
+    match /teachers/{teacherId} {
+      allow read, write: if true;
+    }
+
+    match /schools/{schoolId} {
+      allow read, write: if true;
+    }
+
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+  }
+}

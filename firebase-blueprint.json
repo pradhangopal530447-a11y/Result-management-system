@@ -1,0 +1,148 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents an authenticated user (admin or teacher) of the school management system.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "passwordHash": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "teacher"] }
+      },
+      "required": ["id", "name", "email", "passwordHash"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Represents a student in the school database.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "roll_no": { "type": "string" },
+        "class_name": { "type": "string" },
+        "photo": { "type": "string" },
+        "father_name": { "type": "string" },
+        "mother_name": { "type": "string" },
+        "permanent_address": { "type": "string" },
+        "temporary_address": { "type": "string" },
+        "contact_no": { "type": "string" },
+        "dob_bs": { "type": "string" }
+      },
+      "required": ["id", "name", "roll_no", "class_name"]
+    },
+    "Subject": {
+      "title": "Subject",
+      "description": "Represents a subject taught in a specific class.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "class_name": { "type": "string" },
+        "credit_hours": { "type": "number" },
+        "full_marks": { "type": "number" }
+      },
+      "required": ["id", "name", "class_name", "credit_hours", "full_marks"]
+    },
+    "Mark": {
+      "title": "Mark",
+      "description": "Represents exam marks obtained by a student for a subject.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "student_id": { "type": "string" },
+        "subject_id": { "type": "string" },
+        "marks_obtained": { "type": "number" },
+        "term": { "type": "string", "enum": ["first_term", "second_term", "final_term"] }
+      },
+      "required": ["id", "student_id", "subject_id", "marks_obtained"]
+    },
+    "AttendanceRecord": {
+      "title": "AttendanceRecord",
+      "description": "Represents school attendance data for a student.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "student_id": { "type": "string" },
+        "total_days": { "type": "number" },
+        "present_days": { "type": "number" }
+      },
+      "required": ["id", "student_id", "total_days", "present_days"]
+    },
+    "StudentRemarks": {
+      "title": "StudentRemarks",
+      "description": "Represents remarks/comments about a student.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "student_id": { "type": "string" },
+        "remarks": { "type": "string" }
+      },
+      "required": ["id", "student_id", "remarks"]
+    },
+    "Teacher": {
+      "title": "Teacher",
+      "description": "Represents a teacher in the school.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "photo": { "type": "string" },
+        "post": { "type": "string" },
+        "teaching_subjects": { "type": "string" },
+        "address": { "type": "string" },
+        "contact_no": { "type": "string" }
+      },
+      "required": ["id", "name", "post", "teaching_subjects", "address", "contact_no"]
+    },
+    "SchoolSettings": {
+      "title": "SchoolSettings",
+      "description": "Represents global school settings and parameters.",
+      "type": "object",
+      "properties": {
+        "schoolLogo": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "address": { "type": "string" },
+        "examTerminal": { "type": "string" },
+        "academicYear": { "type": "string" },
+        "activeTerm": { "type": "string" }
+      },
+      "required": ["schoolName", "address", "examTerminal", "academicYear"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Collection of school management user accounts."
+    },
+    "students/{studentId}": {
+      "schema": "Student",
+      "description": "Collection of student academic profiles."
+    },
+    "subjects/{subjectId}": {
+      "schema": "Subject",
+      "description": "Collection of active school subjects."
+    },
+    "marks/{markId}": {
+      "schema": "Mark",
+      "description": "Collection of academic mark sheets for terms."
+    },
+    "attendance/{attendanceId}": {
+      "schema": "AttendanceRecord",
+      "description": "Collection of student attendance logs."
+    },
+    "remarks/{remarksId}": {
+      "schema": "StudentRemarks",
+      "description": "Collection of individual student remarks."
+    },
+    "teachers/{teacherId}": {
+      "schema": "Teacher",
+      "description": "Collection of teacher staff profiles."
+    },
+    "settings/{settingId}": {
+      "schema": "SchoolSettings",
+      "description": "Global settings parameters, such as the school profile and active term."
+    }
+  }
+}

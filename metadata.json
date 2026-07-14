@@ -1,0 +1,6 @@
+{
+  "name": "SHREE KSS MARK ENTRY SYSTEM",
+  "description": "A comprehensive mark entry, ledger, and report card generation system based on the Nepal grading system with student photo uploads, custom remarks, and school settings.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
